@@ -19,13 +19,14 @@ import core
 
 class pyGOL:
     
-    def __init__(self,X,Y,size):
+    def __init__(self,X,Y,size,fullscreen=True):
         self.__X = X
         self.__Y = Y        
         self.__size = size
         self.__cells_color = (150,150,150) #when active (255,255,255)
         self.__bg_color = (0,0,0)
         self.__grid_color = (150,0,50)
+        self.__fullscreen = fullscreen
         self.__run = False  #evolve?
         self.__gen_sleep = 0.5  #T(period) to the next generation
         self.__gen_counter = 0  #Number of generation passed
@@ -33,8 +34,10 @@ class pyGOL:
     def on_init(self):
         pygame.init()
         self.__running = True
-        self.__display = pygame.display.set_mode(self.__size,pygame.FULLSCREEN, 16)
-        #self.__display = pygame.display.set_mode(self.__size,pygame.HWSURFACE)
+        if self.__fullscreen:
+            self.__display = pygame.display.set_mode(self.__size,pygame.DOUBLEBUF|pygame.HWSURFACE|pygame.FULLSCREEN,16)
+        else:
+            self.__display = pygame.display.set_mode(self.__size,pygame.DOUBLEBUF|pygame.HWSURFACE,16)
         self.__gridCalc()
         self.__GOL = core.gameOfLife(self.__X,self.__Y)
         
@@ -172,6 +175,6 @@ class pyGOL:
         self.__cells_color = (150,150,150)
 
 if __name__ == "__main__" :
-    # TODO: manage argv for rows,columns and size
-    app = pyGOL(50,50,(800,800))
+    # TODO: manage argv for rows,columns, size and fullscreen
+    app = pyGOL(192,108,(1920,1080))
     app.on_execute()
