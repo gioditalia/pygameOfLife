@@ -39,7 +39,7 @@ class gameOfLife(object):
         Args:
             generation (int): generation's number who have to elapse
         """
-        for i in xrange(0, generation):
+        for i in range(0, generation):
             self.setGrid(self.__evolve())
 
     def __evolve(self):

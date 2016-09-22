@@ -55,10 +55,10 @@ class pyGOL:
             self.__running = False
         #toggle cells by mouse pression
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            for i in xrange(0, len(self.row_pos)):
+            for i in range(0, len(self.row_pos)):
                 if self.row_pos[i] >= event.pos[1]:
                     break
-            for j in xrange(0, len(self.col_pos)):
+            for j in range(0, len(self.col_pos)):
                 if self.col_pos[j] >= event.pos[0]:
                     break
             if not self.__matrix[i][j]:
@@ -149,14 +149,14 @@ class pyGOL:
         #calculate position of every rows and store it in array
         row_pos = 0
         self.row_pos = []
-        for i in xrange(0, self.__Y):
+        for i in range(0, self.__Y):
             row_pos += self.__rect_width
             self.row_pos.append(row_pos)
 
         #calculate position of every columns and store it in array
         col_pos = 0
         self.col_pos = []
-        for i in xrange(0, self.__X):
+        for i in range(0, self.__X):
             col_pos += self.__rect_length
             self.col_pos.append(col_pos)
 
